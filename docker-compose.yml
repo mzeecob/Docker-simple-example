@@ -1,0 +1,29 @@
+version: '3.7'
+
+services: 
+    app-book:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        image: app-book
+        container_name: app-book
+        ports: 
+            - 5002:5002
+        networks: 
+            - app-net
+        volumes:
+            - /usr/src/app
+        
+    
+
+    mysql:
+        container_name: mysql-book
+        image: mysql
+        networks: 
+            - app-net
+        environment: 
+            MYSQL_ROOT_PASSWORD: rootroot123
+            MYSQL_DATABASE: book-store
+
+networks: 
+    app-net:
